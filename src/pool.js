@@ -2,8 +2,8 @@ import pg from 'pg'
 import { Connector } from "@google-cloud/cloud-sql-connector"
 import { configDotenv } from 'dotenv'
 
-// configDotenv();
-console.log(Object.keys(process.env))
+if (!Object.keys(process.env).includes("KUBERNETES_PORT"))
+    configDotenv();
 
 const { Pool } = pg;
 
