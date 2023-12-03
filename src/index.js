@@ -1,6 +1,7 @@
 import express from 'express'
 import titles from './endpoints/titles.js'
 import cors from 'cors'
+import pool from './pool.js'
 
 const app = express();
 const port = 3000;
@@ -14,6 +15,9 @@ app.use(
         extended: true,
     })
 );
+
+pool.query('SELECT NOW();').then(({rows})=> console.table(rows))
+
 app.get("/", (req, res) => {
     res.json({ message: "ok" });
 });
