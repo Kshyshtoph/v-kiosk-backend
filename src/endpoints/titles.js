@@ -1,4 +1,4 @@
-import pool from '../connector.js'
+import pool from '../pool.js'
 
 export default function getTiltles(req, res) {
     const page = req.params.page || 0
