@@ -2,7 +2,7 @@ import pg from 'pg'
 import { Connector } from "@google-cloud/cloud-sql-connector"
 import { configDotenv } from 'dotenv'
 
-configDotenv();
+// configDotenv();
 console.log(process.env.DB_UNAME)
 
 const { Pool } = pg;
