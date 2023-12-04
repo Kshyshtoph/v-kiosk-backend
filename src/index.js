@@ -3,6 +3,13 @@ import titles from './endpoints/titles.js'
 import cors from 'cors'
 import pool from './pool.js'
 
+const router = express.Router();
+router.use('/',function(req,res,next){
+    console.log(req.url, req.path)
+    next()
+}
+)
+
 const app = express();
 const port = 3000;
 app.use(cors({
@@ -18,10 +25,14 @@ app.use(
 
 pool.query('SELECT NOW();').then(({rows})=> console.table(rows))
 
-app.get("/", (req, res) => {
+router.get("/", (req, res) => {
     res.json({ message: "ok" });
 });
-app.get('/titles', titles)
+
+router.get('/titles', titles)
+app.use('/api', router)
+app.use('/', router)
+
 
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`);
